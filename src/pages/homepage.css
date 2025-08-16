@@ -1,0 +1,111 @@
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+    color:white;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 40vw;
+    text-align: center;
+
+    max-height: calc(100vh - 88px);
+}
+
+.left-container .task-container {
+    display: flex;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 24px;
+    padding-inline: 30px;
+    justify-content: space-between;
+}
+
+.task-container .left-task-container span {
+    font-weight: bold;
+    font-size: 2rem;
+    color: rgb(242, 127, 19);
+    margin-left: 20px;
+}
+
+.task-container p {
+    font-size: small;
+    font-weight: bold;
+}
+
+.task-container .progress-bar {
+    width: 135%;
+    height: 5px;
+    background-color: rgb(237, 237, 237);
+    border-radius: 12px;
+    margin: 10px 22px;
+}
+
+.right-task-container {
+    display: flex;
+
+}
+
+.right-task-container .circle-container {
+    background-color: rgb(14, 101, 163);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+
+}
+
+.right-task-container .circle-container span {
+    color: aliceblue;
+    display: flex;
+    margin-inline: auto;
+    justify-content: center;
+    padding-top: 22%;
+    font-weight: bold;
+    font-size: 2rem;
+
+}
+
+.input-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-form .todo-add {
+    border: none;
+    width: 70%;
+    height: 40px;
+    border-radius: 12px;
+    margin-block: 20px;
+    margin-inline: 20px;
+}
+input{
+    font-weight: 500;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    color:rgb(2, 2, 2);
+}
+input::placeholder{
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.input-form .add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(22, 164, 189);
+}
+
+.add-button span {
+    position: relative;
+    font-size: 2rem;
+    color:rgb(255, 255, 255);
+}

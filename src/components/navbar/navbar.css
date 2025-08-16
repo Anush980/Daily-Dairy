@@ -5,6 +5,7 @@
 
 .navbar {
     display: flex;
+    position: sticky;
     justify-content: space-between;
     min-width: fit-content;
     max-width: 100vw;
