@@ -1,0 +1,148 @@
+:root {
+    --background-color: rgba(59, 80, 196, 0.971);
+    --hover-color: rgb(84, 255, 84);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    min-width: fit-content;
+    max-width: 100vw;
+    padding: 15px;
+    background-color: var(--background-color);
+    z-index: 999;
+    overflow-x: hidden;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.logo .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.logo .hamburger span {
+    height: 3px;
+    width: 28px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: all 300ms ease;
+}
+.hamburger.open span:nth-child(1){
+    transform: rotate(45deg) translate(5px,5px);
+}
+.hamburger.open span:nth-child(2){
+    opacity: 0;
+}
+.hamburger.open span:last-child{
+    transform: rotate(-45deg) translate(5px,-5px);
+}
+
+.logo span {
+    color: rgb(0, 255, 102);
+    font-style: italic;
+}
+
+.middle {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.links {
+    display: flex;
+}
+.links ul{
+    display: flex;
+}
+.links ul a {
+    margin-right: 25px;
+    list-style: none;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    transition: all 150ms ease-in;
+    cursor: pointer;
+}
+
+.links ul a:hover {
+    color: var(--hover-color)
+}
+
+.links ul a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--hover-color);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+.links ul a:hover::after {
+    width: 100%;
+}
+
+.search-bar {
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+}
+
+.account {
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(11, 168, 150, 0.818);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(113, 105, 105, 0.321);
+
+}
+
+.account span {
+    font-weight: bold;
+    color: white;
+}
+
+@media(max-width:768px) {
+    .logo .hamburger {
+        display: flex;
+    }
+
+    .links ul {
+        display: none;
+    }
+
+    .search-bar {
+        width: 100%
+    }
+
+}
+
+@media(max-width:600px) {
+    .account {
+        margin-left: 30px;
+    }
+
+    .search-bar {
+        width: 80%;
+        margin-right: 10%;
+    }
+}
