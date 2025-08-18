@@ -17,7 +17,7 @@
 .left-container .task-container {
     display: flex;
     margin: 10px;
-    border: 1px solid black;
+    border: 2px dotted rgb(44, 39, 39);
     border-radius: 24px;
     padding-inline: 30px;
     justify-content: space-between;
@@ -108,4 +108,12 @@ input::placeholder{
     position: relative;
     font-size: 2rem;
     color:rgb(255, 255, 255);
+}
+.list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list button{
+    margin:8px;
 }
