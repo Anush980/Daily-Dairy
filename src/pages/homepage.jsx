@@ -12,9 +12,21 @@ function DailyDiary() {
             .then(res => res.json())
             .then(data => setDiary(data))
             .catch(err => alert(err))
-    },[]);
+    }, []);
 
-    async function submitHandler(e){
+    async function deleteHandler(id) {
+        try {
+            const res = await fetch(`http://localhost:5001/api/${id}`, {
+                method: "DELETE"
+            });
+            const result = await res.json();
+            setDiary(result.entries);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async function submitHandler(e) {
         e.preventDefault();
         if (!temp.trim()) return;
         // setDiary([...diary, temp]);
@@ -23,7 +35,7 @@ function DailyDiary() {
             const res = await fetch("http://localhost:5001/api", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text:temp })
+                body: JSON.stringify({ text: temp })
             });
             if (!res.ok) throw new Error("Failed to connect to create entry");
 
@@ -63,7 +75,7 @@ function DailyDiary() {
                     </form>
                     <ol>
                         {diary.map((entry, index) => {
-                            return <li key={index} className="list">{entry.text}<button>Edit</button><button>Delete</button></li>
+                            return <li key={index} className="list">{index+1}. {entry.text}<button>Edit</button><button onClick={() => deleteHandler(entry.id)}>Delete</button></li>
                         })}
                     </ol>
 

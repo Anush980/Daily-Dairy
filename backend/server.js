@@ -46,11 +46,19 @@ app.post("/api", (req, res) => {
         return res.status(400).json({ error: "text is required" })
     }
     const entries =loadDB();
-    const entry = { "text": text};
+    const entry = {id:Date.now(),text};
     entries.push(entry);
     saveDB(entries);
     res.json({entries});
 })
+app.delete("/api/:id",(req,res)=>{
+    const id = Number(req.params.id);
+    let entries = loadDB();
+    entries =entries.filter(e=>e.id!==id);
+    saveDB(entries);
+    res.json({entries});
+});
+
 app.listen(5001, () => {
     console.log("Server is running in port number 5001");
 })
