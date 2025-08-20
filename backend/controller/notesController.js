@@ -1,64 +1,42 @@
-const fs = require('fs');
-const FILE = "../db.json";
+//controller
 
-function ensureDB() {
-    if (!fs.existsSync(FILE)) {
-        fs.writeFileSync(FILE, "[]", "utf8");
-    }
-}
-function loadDB() {
-    ensureDB();
-    try {
-        const raw = fs.readFileSync(FILE,"utf8");
-        return JSON.parse(raw);
-    }
-    catch (e) {
-        console.error(e);
-    }
-}
-function saveDB(data) {
-    try {
-        fs.writeFileSync(FILE, JSON.stringify(data, null, 2), "utf8");
-    }
-    catch (e) {
-        console.error(e);
-    }
-}
-
+const { getAllNotes,addNote,updateNote,deleteNote } = require('../models/notesModel');
 
 
 const getNotes = (req ,res)=>{
-    const entries = loadDB();
-    res.status(200).json({entries,
-    msg:"get"
-    });
-}
+    const entries = getAllNotes();
+    res.status(200).json(entries);
+};
 
 const postNotes = (req,res)=>{
     const text = (req.body && req.body.text) ? String(req.body.text).trim() : "";
     if (!text) {
         return res.status(400).json({ error: "text is required" })
     }
-    const entries =loadDB();
-    const entry = {id:Date.now(),text};
-    entries.push(entry);
-    saveDB(entries);
-    res.status(200).json({entries})
-    console.log(req.body);
+    const newNote =addNote(text);
+    res.status(201).json(newNote);
 }
+
 
 const updateNotes =(req,res)=>{
     const {id} = req.params;
-     res.status(200).json({
-        msg:"update",id
-        });}
+    const {text} = req.body;
+     if (!text) return res.status(400).json({ error: "text is required" });
+
+    const updated = updateNote(id, text);
+    if (!updated) return res.status(404).json({ error: "Note not found" });
+
+    res.status(200).json(updated);
+}
 
 const deleteNotes= (req,res)=>{
-    const {id} = req.params;
-    let entries = loadDB();
-    entries =entries.filter(e=>e.id!==Number(id));
-    saveDB(entries);
-    res.json({entries});
+   const { id } = req.params;
+    const deleted = deleteNote(id);
+
+    if (!deleted) return res.status(404).json({ error: "Note not found" });
+
+    res.status(200).json({ msg: "Note deleted" });
 };
+
 
 module.exports = {getNotes,postNotes,updateNotes,deleteNotes}
