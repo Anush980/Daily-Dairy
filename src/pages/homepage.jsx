@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './homepage.css';
 
 function DailyDiary() {
@@ -141,7 +143,7 @@ function DailyDiary() {
         <div className="left-container">
           <div className="task-container">
             <div className="left-task-container">
-              <span>Total Entries</span>
+              <span>Remaining Tasks</span>
               <div className="progress-container">
                 <span className="entries-count">{diary.length}</span>
               </div>
@@ -165,11 +167,11 @@ function DailyDiary() {
           </form>
 
           <div className="diary-entries">
-            <h2>Your Entries</h2>
+            <h2>Your Tasks</h2>
             {loading ? (
-              <div className="loading">Loading your diary entries...</div>
+              <div className="loading">Loading your tasks...</div>
             ) : diary.length === 0 ? (
-              <div className="empty-state">No entries yet. Add your first entry above!</div>
+              <div className="empty-state">Add your Goals for today</div>
             ) : (
               <ol>
                 {diary.map((entry, index) => (
@@ -199,8 +201,9 @@ function DailyDiary() {
                           <span className="entry-text">{index + 1}. {entry.text}</span>
                         </div>
                         <div className="entry-actions">
-                          <button onClick={() => enableEdit(entry.id)}>Edit</button>
-                          <button onClick={() => deleteHandler(entry.id)}>Delete</button>
+                          <button onClick={() => enableEdit(entry.id)}><FontAwesomeIcon icon={faEdit} />
+</button>
+                          <button onClick={() => deleteHandler(entry.id)}><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                       </div>
                     )}
@@ -235,8 +238,8 @@ function Time() {
       <div className="current-date">{formatDate(time)}</div>
       <div className="quote-container">
         <h3>Quote of the Day</h3>
-        <blockquote>"The journey of a thousand miles begins with a single step."</blockquote>
-        <cite>- Lao Tzu</cite>
+        <blockquote>"Always compare yourself without your past self"</blockquote>
+        <cite>- Anush</cite>
       </div>
     </div>
   );
